@@ -10,21 +10,21 @@ export class User {
     name: string
 
     @Column({nullable: false})
-    ano_nascimento: number
+    birthday: Date
 
     @Column({nullable: false, length: 30})
-    estado: string
+    state: string
 
     @Column({nullable: false, length: 30})
-    cidade: string
+    city: string
 
     @Column({nullable: false, length: 30})
-    bairro: string
+    district: string
 
     @Column({nullable: false, length: 60})
-    rua: string
+    street: string
 
     @Column({type: 'longtext', nullable: false,})
-    biografia: string
+    biography: string
 
 }

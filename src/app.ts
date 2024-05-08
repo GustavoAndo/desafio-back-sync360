@@ -2,6 +2,7 @@ import express from 'express'
 import 'dotenv/config'
 import cors from 'cors'
 import { AppDataSource } from './data-source'
+import addInitialUser from './seeds/initialUser'
 
 const app = express()
 
@@ -12,6 +13,7 @@ AppDataSource
     .initialize()
     .then(() => {
         console.log("Banco de dados conectado!")
+        addInitialUser()
     })
     .catch((e) => {
         console.error("Erro na conxeão do banco de dados:", e)
