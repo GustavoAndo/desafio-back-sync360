@@ -3,6 +3,7 @@ import 'dotenv/config'
 import cors from 'cors'
 import { AppDataSource } from './data-source'
 import addInitialUser from './seeds/initialUser'
+import routesUser from './routes/users'
 
 const app = express()
 
@@ -19,10 +20,7 @@ AppDataSource
         console.error("Erro na conxeão do banco de dados:", e)
     })
 
-
-app.get('/', (req, res) => {
-    res.send('Test')
-})
+app.use('/users', routesUser)
 
 const port = process.env.PORT || 3001
 app.listen(port, () =>{
