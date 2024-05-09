@@ -29,7 +29,7 @@ export default new class UserController {
     async update(req: Request, res: Response) {
         try {
             const { id } = req.params
-            const { name, birthday, state, city, district, street, biography } = req.body
+            let { name, birthday, state, city, district, street, biography } = req.body
             
             const user = await AppDataSource.manager.findOne(User, {
                 where: {
@@ -41,8 +41,26 @@ export default new class UserController {
                 return res.status(404).json({message: "Usuário não encontrado."})
             }
 
-            if (!name || !birthday || !state || !city || !district || !street || !biography) {
-                return res.status(422).json({message: "Preencha todos os campos!"})
+            if (!name) {
+                name = user.name
+            }
+            if (!birthday) {
+                birthday = user.birthday
+            }
+            if (!state) {
+                state = user.state
+            }
+            if (!city) {
+                city = user.city
+            }
+            if (!district) {
+                district = user.district
+            }
+            if (!street) {
+                street = user.street
+            }
+            if (!biography) {
+                biography = user.biography
             }
             
             let invalid = ""
